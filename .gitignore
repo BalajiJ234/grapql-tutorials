@@ -1,0 +1,5 @@
+#node_modules - regeneratable folder
+node_modules
+
+#package-lock - regenerate file.
+package-lock.json
