@@ -1,29 +1,34 @@
-import express from 'express';
+import express from "express";
 
 //Using Graphql;
-import {graphqlHTTP} from 'express-graphql'
+import { graphqlHTTP } from "express-graphql";
 
-import {schemaOne, schemaTwo} from './schema';
+import { schemaOne, schemaTwo } from "./schema";
 
 //Initiating the Express()
 const App = express();
 
 //app.get();
-App.get('/', (req, res) => {
-    res.send('Graphql is Amazing!');
-})
+App.get("/", (req, res) => {
+  res.send("Graphql is Amazing!");
+});
 
 // const root = {hello: () => 'Welcome to GraphQl'};
 
-const friend_root = {friend: () => {
+const friend_root = {
+  friend: () => {
     return {
-        "id": 1232143244234,
-        "firstName": "Balaji",
-        "lastName": "Janarthanan",
-        "gender":"Male",
-        "mail": "balajijanarthanan1997@gmail.com"
-    }
-}}
+      id: 1232143244234,
+      firstName: "Balaji",
+      lastName: "Janarthanan",
+      gender: "Male",
+      email: [
+        { email: "balajijanarthanan1997@gmail.com" },
+        { email: "balajijanarthanan234@outlook.com" },
+      ],
+    };
+  },
+};
 
 // App.use('/graphql', graphqlHTTP({
 //     schema: schemaOne,
@@ -31,12 +36,17 @@ const friend_root = {friend: () => {
 //     graphiql: true,
 // }))
 
-App.use('/graphql/user-defined/type', graphqlHTTP({
+App.use(
+  "/graphql/user-defined/type",
+  graphqlHTTP({
     schema: schemaTwo,
     rootValue: friend_root,
-    graphiql: true
-}))
+    graphiql: true,
+  })
+);
 const PORT = 8080;
 
 //listening the server in the Particular Port
-App.listen(PORT, () => {console.log(`Running on server port localhost:${PORT}/graphQL`)})
+App.listen(PORT, () => {
+  console.log(`Running on server port localhost:${PORT}/graphQL`);
+});
