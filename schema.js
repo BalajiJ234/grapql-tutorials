@@ -5,9 +5,17 @@ export const schema = buildSchema(`
         id: ID
         firstName: String
         lastName: String
-        gender: String
+        gender: Gender
         age: Int
         email: String
+    }
+
+    enum Gender {
+        MALE
+        FEMALE
+        TRANGENDER
+        NOT PREFER TO SAY
+        OTHERS
     }
 
     type Query {
@@ -18,7 +26,7 @@ export const schema = buildSchema(`
         id: ID
         firstName: String
         lastName: String
-        gender: String
+        gender: Gender
         age: Int
         email: String
     }
