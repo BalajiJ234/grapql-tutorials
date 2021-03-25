@@ -6,7 +6,17 @@ export const schema = buildSchema(`
         firstName: String
         lastName: String
         gender: String
+        age: Int
+        isFriend: Boolean
+        stock: [Stock]
         email: String
+    }
+
+    type Stock {
+        id: ID
+        price: Float
+        closingPrice: Float
+        name: String
     }
 
     type Query {
