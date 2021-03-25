@@ -15,6 +15,17 @@ App.get("/", (req, res) => {
 
 // const root = {hello: () => 'Welcome to GraphQl'};
 
+const friendDatabase = {};
+class Friend {
+  constructor(id, {firstName, lastName, gender, email}) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.gender = gender;
+    this.email = email;
+  }
+}
+
 const friend_root = {
   friend: () => {
     return {
@@ -22,12 +33,14 @@ const friend_root = {
       firstName: "Balaji",
       lastName: "Janarthanan",
       gender: "Male",
-      email: [
-        { email: "balajijanarthanan1997@gmail.com" },
-        { email: "balajijanarthanan234@outlook.com" },
-      ],
+      email: "balajijanarthanan1997@gmail.com"
     };
   },
+  createFriend: ({input}) => {
+    let id = require('crypto').randomBytes(10).toString('hex'); //Cryptographic Algorithm!
+    friendDatabase[id] = input;
+    return new Friend(id, input)
+  }
 };
 
 // App.use('/graphql', graphqlHTTP({
