@@ -2,7 +2,7 @@
 const friendDatabase = {};
 
 class Friend {
-  constructor(id, {firstName, lastName, gender, email}) {
+  constructor(id, { firstName, lastName, gender, email }) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -12,14 +12,14 @@ class Friend {
 }
 
 const resolvers = {
-  getFriend: ({id}) => {
-      return new Friend(id, friendDatabase[id])
+  getFriend: ({ id }) => {
+    return new Friend(id, friendDatabase[id]);
   },
-  createFriend: ({input}) => {
-    let id = require('crypto').randomBytes(10).toString('hex'); //Cryptographic Algorithm!
+  createFriend: ({ input }) => {
+    let id = require("crypto").randomBytes(10).toString("hex"); //Cryptographic Algorithm!
     friendDatabase[id] = input;
-    return new Friend(id, input)
-  }
+    return new Friend(id, input);
+  },
 };
 
 export default resolvers;

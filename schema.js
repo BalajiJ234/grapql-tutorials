@@ -1,6 +1,6 @@
 import { buildSchema } from "graphql";
 
-export const schema = buildSchema(`
+const schema = buildSchema(`
     type Friend {
         id: ID
         firstName: String
@@ -14,7 +14,7 @@ export const schema = buildSchema(`
         MALE
         FEMALE
         TRANGENDER
-        NOT PREFER TO SAY
+        NOT_PREFER_TO_SAY
         OTHERS
     }
 
@@ -36,3 +36,5 @@ export const schema = buildSchema(`
     }
 
 `);
+
+export default schema;
