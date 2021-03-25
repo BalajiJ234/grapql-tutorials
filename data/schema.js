@@ -8,6 +8,7 @@ const typeDefs = `
         lastName: String
         gender: Gender
         age: Int
+        language: String
         email: String
         contacts: [Contact]
     }
@@ -35,6 +36,7 @@ const typeDefs = `
         lastName: String
         gender: Gender
         age: Int
+        language: String
         email: String
         contacts: [ContactInput]
     }
