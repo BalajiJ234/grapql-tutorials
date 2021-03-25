@@ -1,14 +1,6 @@
 import { buildSchema } from "graphql";
 
-// export const schemaOne = buildSchema(`
-//     type Query {
-//         hello: String
-//     }
-// `)
-
-//For example, adding array of emails
-//If you add any field mandatory, use ! (Exclamatory) Symbol
-export const schemaTwo = buildSchema(`
+export const schema = buildSchema(`
     type Friend {
         id: ID
         firstName: String
@@ -18,7 +10,7 @@ export const schemaTwo = buildSchema(`
     }
 
     type Query {
-        friend: Friend
+        getFriend(id: ID): Friend
     }
 
     input FriendInput {
@@ -32,5 +24,5 @@ export const schemaTwo = buildSchema(`
     type Mutation {
         createFriend(input: FriendInput): Friend
     }
-    
+
 `);

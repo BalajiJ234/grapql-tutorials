@@ -3,7 +3,8 @@ import express from "express";
 //Using Graphql;
 import { graphqlHTTP } from "express-graphql";
 
-import { schemaOne, schemaTwo } from "./schema";
+import { schema } from "./schema";
+import { resolvers } from "./resolvers";
 
 //Initiating the Express()
 const App = express();
@@ -13,47 +14,13 @@ App.get("/", (req, res) => {
   res.send("Graphql is Amazing!");
 });
 
-// const root = {hello: () => 'Welcome to GraphQl'};
-
-const friendDatabase = {};
-class Friend {
-  constructor(id, {firstName, lastName, gender, email}) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.gender = gender;
-    this.email = email;
-  }
-}
-
-const friend_root = {
-  friend: () => {
-    return {
-      id: 1232143244234,
-      firstName: "Balaji",
-      lastName: "Janarthanan",
-      gender: "Male",
-      email: "balajijanarthanan1997@gmail.com"
-    };
-  },
-  createFriend: ({input}) => {
-    let id = require('crypto').randomBytes(10).toString('hex'); //Cryptographic Algorithm!
-    friendDatabase[id] = input;
-    return new Friend(id, input)
-  }
-};
-
-// App.use('/graphql', graphqlHTTP({
-//     schema: schemaOne,
-//     rootValue: root,
-//     graphiql: true,
-// }))
+const root = resolvers;
 
 App.use(
-  "/graphql/user-defined/type",
+  "/graphql/",
   graphqlHTTP({
-    schema: schemaTwo,
-    rootValue: friend_root,
+    schema: schema,
+    rootValue: root,
     graphiql: true,
   })
 );
