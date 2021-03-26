@@ -10,6 +10,7 @@ const URI =
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 const friendSchema = new mongoose.Schema({

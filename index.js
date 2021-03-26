@@ -17,7 +17,7 @@ App.use(
     graphiql: true,
   })
 );
-const PORT = 8080;
+const PORT = 8888;
 
 //listening the server in the Particular Port
 App.listen(PORT, () => {
