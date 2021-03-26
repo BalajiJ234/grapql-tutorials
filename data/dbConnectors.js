@@ -54,8 +54,8 @@ const Aliens = sequelize.define("aliens", {
 Aliens.sync({ force: true }).then(() => {
   _.times(10, (i) => {
     Aliens.create({
-      firstName: casual.firstName,
-      lastName: casual.lastName,
+      firstName: casual.first_name,
+      lastName: casual.last_name,
       planet: casual.word,
     });
   });
