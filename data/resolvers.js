@@ -1,4 +1,4 @@
-import { Friends, Aliens } from './dbConnectors';
+import { Friends, Aliens } from "./dbConnectors";
 
 //resolver map
 export const resolvers = {
@@ -17,26 +17,40 @@ export const resolvers = {
         language: input.language,
         age: input.age,
         contacts: input.contacts,
-      })
+      });
 
       newFriend.id = newFriend._id;
 
       return new Promise((resolve, object) => {
         newFriend.save((err) => {
-          if(err) reject(err)
-          else resolve(newFriend)
-        })
-      })
+          if (err) reject(err);
+          else resolve(newFriend);
+        });
+      });
     },
-    
-    updateFriend: (root, {input}) => {
+
+    updateFriend: (root, { input }) => {
       return new Promise((resolve, object) => {
-        Friends.findOneAndUpdate({_id: input.id}, input, {new: true}, (err, friend) => {
-          if(err) reject(err)
-          else resolve(friend)
-        })
-      })
-    }
+        Friends.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (err, friend) => {
+            if (err) reject(err);
+            else resolve(friend);
+          }
+        );
+      });
+    },
+
+    deleteFriend: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Friends.remove({ _id: id }, (err) => {
+          if (err) reject(err);
+          else resolve("Successfully deleted the friend!");
+        });
+      });
+    },
   },
 };
 
@@ -69,7 +83,6 @@ export const resolvers = {
 //     },
 //   },
 // };
-
 
 //....first
 // //Temporary / Internal Database...
